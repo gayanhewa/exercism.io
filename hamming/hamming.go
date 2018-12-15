@@ -1,30 +1,27 @@
 package hamming
 
 import (
-	"bytes"
 	"errors"
+	"strings"
 )
 
 // Distance should return the hamming distance between two patterns, or -1 if not applicable.
 func Distance(a, b string) (int, error) {
-	aString := bytes.TrimSpace([]byte(a))
-	bString := bytes.TrimSpace([]byte(b))
+	a = strings.TrimSpace(a)
+	b = strings.TrimSpace(b)
 
-	if len(aString) != len(bString) {
-		return -1, errors.New("Unable to calculate hamming distance.")
-	}
-
-	if bytes.Equal(aString, bString) {
+	if a == "" || b == "" || a == b {
 		return 0, nil
+	}
+	if len(a) != len(b) {
+		return 0, errors.New("unable to calculate hamming distance")
 	}
 
 	distance := 0
-
-	for index, value := range aString {
-		if value != bString[index] {
+	for i := range a {
+		if a[i] != b[i] {
 			distance++
 		}
 	}
-
 	return distance, nil
 }
