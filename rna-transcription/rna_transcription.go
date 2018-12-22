@@ -13,6 +13,5 @@ func ToRNA(dna string) string {
 	for i, char := range dna {
 		output[i] = mapping[char]
 	}
-
 	return string(output)
 }
