@@ -17,3 +17,4 @@ All the test cases can be found in the `cases_test.go` file. Feel free to add / 
 - The role relationships are not cyclic.
 - Errors will only be thrown for invalid user id's
 - The function assumes that the initial data given is valid. It does not validate the input data for the initial list of users and roles.
+- I have replaced setUser / setRoles in favour of UserHierarchy.New factory method
