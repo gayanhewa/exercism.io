@@ -12,7 +12,6 @@ func getTestInstance() *UserHierarchy {
 		Role{4, "Employee", 3},
 		Role{5, "Trainer", 3},
 	}
-
 	users := []User{
 		User{1, "Adam", 1},
 		User{2, "Emily", 4},
@@ -23,9 +22,9 @@ func getTestInstance() *UserHierarchy {
 		User{7, "Harry", 5},
 		User{8, "Lance", 1},
 	}
-
 	return New(users, roles)
 }
+
 func TestGetSubordinates(t *testing.T) {
 	var userHierarchy *UserHierarchy
 	userHierarchy = getTestInstance()
