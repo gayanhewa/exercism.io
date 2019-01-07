@@ -12,7 +12,7 @@ All the test cases can be found in the `cases_test.go` file. Feel free to add / 
 
 ### Assumptions
 
-- You have Go 1.11 or better running.
+- You have Go 1.11 running.
 - RoleID's and UserID's will always be unsigned.
 - The role relationships are not cyclic.
 - Errors will only be thrown for invalid user id's
