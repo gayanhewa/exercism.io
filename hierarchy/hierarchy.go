@@ -24,27 +24,31 @@ func (u *UserHierarchy) GetSubordinates(userID uint64) ([]User, error) {
 	if err != nil {
 		return nil, err
 	}
-	var roles []Role
-	roles = u.getChildRoles(user.Role, roles)
+	roles := u.getChildRoles(user.Role)
 	return u.getUsersByRoles(roles), nil
 }
 
-// getChildRoles will return all the child roles and grand children.
-func (u *UserHierarchy) getChildRoles(roleId uint64, roles []Role) []Role {
-	var childRoles []Role
+func (u *UserHierarchy) getDirectSubordinateRoles(roleID uint64) (roles []Role) {
 	for _, role := range u.roles {
-		if roleId == role.Parent {
+		if roleID == role.Parent {
 			roles = append(roles, role)
-			childRoles = append(childRoles, role)
 		}
 	}
-	if len(childRoles) == 0 {
-		return roles
+	return roles
+}
+
+// getChildRoles will return all the child roles and grand children.
+func (u *UserHierarchy) getChildRoles(roleID uint64) (childRoles []Role) {
+	var roleIDs []uint64
+	roleIDs = append(roleIDs, roleID)
+	for _, currentRoleID := range roleIDs {
+		directSubordinates := u.getDirectSubordinateRoles(currentRoleID)
+		childRoles = append(childRoles, directSubordinates...)
+		for _, role := range directSubordinates {
+			roleIDs = append(roleIDs, role.ID)
+		}
 	}
-	for _, i := range childRoles {
-		return u.getChildRoles(i.ID, roles)
-	}
-	return nil
+	return childRoles
 }
 
 // getUsersByRoles is a helper function that returns all users that belong to the given slice of roles.
