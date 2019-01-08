@@ -39,8 +39,7 @@ func (u *UserHierarchy) getDirectSubordinateRoles(roleID uint64) (roles []Role) 
 
 // getChildRoles will return all the child roles and grand children.
 func (u *UserHierarchy) getChildRoles(roleID uint64) (childRoles []Role) {
-	var roleIDs []uint64
-	roleIDs = append(roleIDs, roleID)
+	roleIDs := []uint64{roleID}
 	for _, currentRoleID := range roleIDs {
 		directSubordinates := u.getDirectSubordinateRoles(currentRoleID)
 		childRoles = append(childRoles, directSubordinates...)
