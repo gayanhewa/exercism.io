@@ -39,8 +39,8 @@ func TestGetSubordinates(t *testing.T) {
 			var exists bool
 			for _, user := range users {
 				exists = false
-				for _, userId := range tc.expected {
-					if userId == user.ID {
+				for _, userID := range tc.expected {
+					if userID == user.ID {
 						exists = true
 						break
 					}
