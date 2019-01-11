@@ -10,15 +10,15 @@ func IsIsogram(word string) bool {
 	if word == "" {
 		return false
 	}
-	letters := map[rune]rune{}
+	letters := map[rune]bool{}
 	for _, letter := range strings.ToLower(word) {
 		if unicode.IsSpace(letter) || letter == '-' {
 			continue
 		}
-		if letters[letter] != 0 {
+		if letters[letter] {
 			return false
 		}
-		letters[letter] = letter
+		letters[letter] = true
 	}
 	return true
 }
