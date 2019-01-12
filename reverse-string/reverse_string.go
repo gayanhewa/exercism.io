@@ -9,3 +9,11 @@ func String(phrase string) string {
 	}
 	return string(reversed)
 }
+
+func String2(phrase string) string {
+	word := []rune(phrase)
+	for i, j := 0, len(word)-1; i < len(word)/2; i, j = i+1, j-1 {
+		word[i], word[j] = word[j], word[i]
+	}
+	return string(word)
+}

@@ -31,6 +31,13 @@ func BenchmarkReverse(b *testing.B) {
 		}
 	}
 }
+func BenchmarkReverse2(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, test := range testCases {
+			String2(test.input)
+		}
+	}
+}
 
 // mutiByteCases adds UTF-8 multi-byte case,
 // since the canonical-data.json (generator data source for cases_test.go)
