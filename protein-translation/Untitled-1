@@ -1,0 +1,4 @@
+curl -d '{ "name": "Darth Vader" }' \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer: token" \
+  https://en16qv9pojj8o.x.pipedream.net/
